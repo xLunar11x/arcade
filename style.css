@@ -1,0 +1,28 @@
+
+body {
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60rem;
+}
+
+#title {
+    font-size: 4rem;
+}
+
+.box {
+    width: 15rem ;
+    height: 15rem ;
+    border: solid ;
+    background-color: grey;
+    text-align: center;
+    font-size: 12rem;
+}
+
+#winner {
+    font-size: 3rem;
+    color: red;
+}
