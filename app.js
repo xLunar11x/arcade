@@ -31,7 +31,6 @@ const renderBoard = () => {
 
     const boxElem = document.createElement('div');
     boxElem.classList.add('box');
-
     boxElem.innerText = box.value;
     boxElem.dataset.index = i;
     boardElem.appendChild(boxElem);
@@ -41,15 +40,14 @@ const renderBoard = () => {
 const Players = () => {
     let text;
     if (!state.players[0] || !state.players[1]) {
-    text = `<input name = 'player1' placeholder="Enter Player 1">
-        <input name = 'player2' placeholder="Enter Player 2">
+    text = `<input name = 'player1' placeholder="Enter Player 1" required={true}>
+        <input name = 'player2' placeholder="Enter Player 2" required={true}>
         <button class = 'start'>Start Game</button>`;
     } else {
         text = `It's currently ${state.currentPlayer()}'s turn. <button class = 'reset'>Reset Game</button>`;
     }
     playerTurnElem.innerHTML = text;
 };
-
 
 
 const nextPlayer = () => {
@@ -72,40 +70,33 @@ const PlayerXorO = () => {
 };
 
 const winner = () => {
-    let Winner = `Winner Winner Chicken Dinner`
+    state.Winner = "Winner Winner Chicken Dinner"
     if (state.board[0].value === state.board[1].value && state.board[0].value === state.board[2].value) {
-         winnerElem.innerHTML = Winner} 
+         winnerElem.innerHTML = state.Winner} 
     if (state.board[3].value === state.board[4].value && state.board[3].value === state.board[5].value) {
-         winnerElem.innerHTML = Winner} 
+         winnerElem.innerHTML = state.Winner} 
     if (state.board[6].value === state.board[7].value && state.board[6].value === state.board[8].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     if (state.board[0].value === state.board[3].value && state.board[0].value === state.board[6].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     if (state.board[1].value === state.board[4].value && state.board[1].value === state.board[7].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     if (state.board[2].value === state.board[5].value && state.board[2].value === state.board[8].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     if (state.board[0].value === state.board[4].value && state.board[0].value === state.board[8].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     if (state.board[2].value === state.board[4].value && state.board[2].value === state.board[6].value) {
-         winnerElem.innerHTML = Winner}
+         winnerElem.innerHTML = state.Winner}
     
-
 }
 const render = () => {
     renderBoard();
     Players();
-    console.log(state)
 };
-
-const win1 =
-//we want this to input x for player1
-//aye bro use map so that you can access the individual objects in the array brother peace and love
 
 // ******** event listeners *******
 
 playerTurnElem.addEventListener('click', (event) => {
-    //console.log('this is the event from playerTurnElem', event.target);
     if (event.target.className === 'start') {
         const player1Input = document.querySelector('input[name=player1]')
         const player1Value = player1Input.value;
@@ -115,16 +106,19 @@ playerTurnElem.addEventListener('click', (event) => {
         state.players[1] = player2Value;
         render();
     } else if (event.target.className === 'reset') {
+        winnerElem.innerHTML = ''
         resetState();
         render();
     }
 });
 
 boardElem.addEventListener('click', (event) => {
-    nextPlayer();
-    PlayerXorO();
-    winner();
-    render();
+    if (state.players[0] || state.players[1]) {
+        nextPlayer();
+        PlayerXorO();
+        winner();
+        render();
+    }
 });
 
 

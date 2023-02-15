@@ -1,23 +1,37 @@
+#everything {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 2px;
+}
 
 body {
-    align-items: center;
+    background-color: #212121;
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 642px;
+    max-width: 75%;
+    justify-content: center;
+    box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #title {
     font-size: 4rem;
+    color: rgb(151, 5, 151);
+    padding: 5px;
+    text-shadow: 2px 2px black;
+    margin: 15px;
 }
 
 .box {
-    width: 15rem ;
-    height: 15rem ;
+    width: 13rem ;
+    height: 13rem ;
     border: solid ;
-    background-color: grey;
+    background-color: rgb(151, 5, 151);
     text-align: center;
     font-size: 12rem;
 }
@@ -25,4 +39,52 @@ main {
 #winner {
     font-size: 3rem;
     color: red;
+    text-shadow: 2px 2px black;
+}
+
+input {
+    height: 30px;
+    width: 200px;
+    font-size: 25px;
+    background-color: rgb(151, 5, 151);
+}
+
+::placeholder { 
+    color: black;
+  }
+
+p {
+    color: rgb(151, 5, 151);
+    text-shadow: 2px 2px black;
+}
+
+button {
+    font-size: 25px;
+    background-color: rgb(151, 5, 151);
+}
+
+#players-turn {
+    font-size: 2rem;
+}
+
+@media (max-width: 850px) {
+    .box {
+        width: 10rem;
+        height: 10rem;
+        font-size: 9rem;
+    }
+    main {
+        width: 498px;
+    }
+}
+
+@media (max-width: 600px) {
+    .box {
+        width: 5rem ;
+        height: 5rem ;
+        font-size: 4rem;
+    }
+    main {
+        width: 258px;
+    }
 }
